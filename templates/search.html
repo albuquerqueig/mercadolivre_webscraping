@@ -1,0 +1,37 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Minha Página
+{% endblock %}
+
+{% block conteudo %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/search',
+                    type: 'POST',
+                    data: $('form').serialize(),
+                    success: function(data) {
+                        var result = JSON.parse(data);
+                        var table = '<table><tr><th>Título</th><th>Preço</th></tr>';
+                        for (var i in result) {
+                            table += '<tr><td>' + result[i].title + '</td><td>' + result[i].price + '</td></tr>';
+                        }
+                        table += '</table>';
+                        $('#result').html(table);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <form>
+        <input type="text" name="query">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div id="result"></div>
+{% endblock %}

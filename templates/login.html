@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+{% block conteudo %}
+            <!--Criar um aside para trazer um texto que fique ao lado esquerdo e deixar o login do lado direito-->
+            <main>
+                <aside>
+                    <h2>Sobre a EasySearch</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </aside>
+                <article>
+                    <h1>Faça seu login</h1>
+                    <form method="POST" action="{{ url_for('autenticar') }}">
+                        <input type="hidden" name="proxima" value="{{ proxima }}">
+                        <p><label>Usuário:</label><br>
+                            <input class="form-control" type="text" name="usuario" required></p>
+                        <p><label>Senha:</label><br>
+                            <input class="form-control" type="password" name="senha" required></p>
+                        <p><button class="btn btn-primary" type="submit">Entrar</button></p>
+                    </form>
+                </article>
+            </main>    
+{% endblock %}
