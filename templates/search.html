@@ -16,9 +16,9 @@
                     data: $('form').serialize(),
                     success: function(data) {
                         var result = JSON.parse(data);
-                        var table = '<table><tr><th>Título</th><th>Preço</th></tr>';
+                        var table = '<table><tr><th>Título</th><th>Preço</th><th>Vendido por</th><th>Desconto</th><th>Parcelamento</th><th>Frete</th></tr>';
                         for (var i in result) {
-                            table += '<tr><td>' + result[i].title + '</td><td>' + result[i].price + '</td></tr>';
+                            table += '<tr><td>' + result[i].title + '</td><td>' + result[i].price + '</td><td>' + result[i].sold_by + '</td><td>' + result[i].discount + '</td><td>' + result[i].installments + '</td><td>' + result[i].shipping + '</td></tr>';
                         }
                         table += '</table>';
                         $('#result').html(table);

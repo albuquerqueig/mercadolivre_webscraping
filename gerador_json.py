@@ -27,11 +27,18 @@ payload = {}
 for i, result in enumerate(results):
     title = result.find("h2", class_="ui-search-item__title").text.strip()
     price = result.find("span", class_="price-tag-fraction").text.strip()
-
-    # Adiciona as informações do resultado ao dicionário de payload
+    sold_by = result.find("p", class_="ui-search-official-store-label ui-search-item__group__element shops__items-group-details ui-search-color--GRAY")
+    discount = result.find("span", class_="ui-search-price__discount")
+    installments = result.find("div", class_="ui-search-installments ui-search-color--LIGHT_GRAY")
+    shipping = result.find("span", class_="ui-search-item__shipping ui-search-color--LIGHT_GRAY")
+    
     payload[i] = {
         "title": title,
-        "price": price
+        "price": "R$ " + price + ",00",
+        "sold_by": sold_by.text.strip() if sold_by else "",
+        "discount": discount.text.strip() if discount else "",
+        "installments": installments.text.strip() if installments else "",
+        "shipping": shipping.text.strip() if shipping else "Consulte o frete"
     }
 
 # Converte o dicionário de payload para JSON
